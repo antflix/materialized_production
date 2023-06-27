@@ -4,4 +4,4 @@ services:
   web:
     image: "emancipatedmind/materialized:latest"
     ports:
-      - 8080:8080
+      - 9999:9999
