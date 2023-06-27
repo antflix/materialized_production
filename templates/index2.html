@@ -1,0 +1,279 @@
+html
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>W3.CSS</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <style>
+      body {
+        background-color: #222222;
+      }
+       ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 10px;
+      }
+       li {
+        margin: 5px;
+        padding: 5px;
+        width: 150px;
+      }
+       .container {
+        display: flex;
+        background-color: #222222;
+      }
+       .list {
+        margin: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 200px;
+        background-color: #222222;
+        color: aliceblue;
+      }
+       .list-header {
+        background-color: #222222;
+        padding: 10px;
+        font-weight: bold;
+        border-bottom: 1px solid #ccc;
+      }
+       ul.sortable-list {
+        background-color: #222222;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        min-height: 50px;
+        border-top: 1px solid #ccc;
+      }
+       ul.sortable-list li {
+        background-color: #222222;
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: move;
+      }
+       .w3-input {
+        background-color: #222222;
+        color: #ccc;
+      }
+       .w3-text-blue {
+        color: #0cf !important;
+      }
+       .w3-text-teal {
+        color: #5f9 !important;
+      }
+       iframe.responsive-iframe {
+        border: solid 1px #777;
+        width: 600px;
+        height: 800px;
+      }
+       /* <!--sidebar--> */
+    body {
+      font-family: "Lato", sans-serif;
+    }
+
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+      display: block;
+    }
+
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+
+    #main {
+      transition: margin-left .5s;
+      /* Change margin-left to margin-right */
+    }
+
+    .sidebar-button {
+      position: fixed;
+      bottom: 60px;
+      right: 5px;
+      font-size: 0px;
+      color: #111;
+      background-color: #817c7c;
+      padding: 10px 20px;
+      border-radius: 0px;
+      cursor: pointer;
+    }
+
+
+
+    @media screen and (max-height: 450px) {
+      .sidenav {
+        padding-top: 15px;
+      }
+
+      .sidenav a {
+        font-size: 18px;
+      }
+    }
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Submit button click event handler
+        $('#submitBtn').click(function () {
+          var configuration = {};
+           // Get the text value of sortable-list elements in each list-header
+          $('.list-header').each(function (index) {
+            var listId = $(this).closest('.list').attr('id');
+            var sortListId = $(this).next('.sortable-list').attr('id');
+             var values = $('#' + sortListId + ' > li').map(function () {
+              return $(this).text();
+            }).get();
+             // Get the entered value from the input field
+            var inputValue = $(this).find('input').val();
+             // Update the configuration object with the user-inputted text
+            configuration[inputValue] = values;
+          });
+           // Output the configuration
+          console.log(configuration);
+        });
+         // Sortable initialization code
+        Sortable.create(document.getElementById('sortable1'), {
+          group: "shared",
+          animation: 150
+        });
+         Sortable.create(document.getElementById('sortable2'), {
+          group: "shared",
+          animation: 150
+        });
+         Sortable.create(document.getElementById('sortable3'), {
+          group: "shared",
+          animation: 150
+        });
+         Sortable.create(document.getElementById('sortable4'), {
+          group: "shared",
+          animation: 150
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container w3-row">
+      <div class="list w3-col s5" id="list1">
+        <div class="list-header">
+          <input type="text" class="w3-input w3-text-blue" name="txt" placeholder="Job #1">
+        </div>
+        <ul class="sortable-list" id="sortable1">
+          <li class="w3-text-teal">Brandin</li>
+          <li>Jesse</li>
+          <li>Derric</li>
+        </ul>
+      </div>
+      <div class="list w3-col s5" id="list2">
+        <div class="list-header">
+          <input type="text" class="w3-input" name="txt" placeholder="Job #2">
+        </div>
+        <ul class="sortable-list" id="sortable2">
+          <li class="w3-text-teal">Anthony</li>
+          <li>Salam</li>
+          <li>Chris</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container w3-row">
+      <div class="list w3-col s5" id="list3">
+        <div class="list-header">
+          <input type="text" class="w3-input" name="txt" placeholder="Job #3">
+        </div>
+        <ul class="sortable-list" id="sortable3">
+          <li class="w3-text-teal">Brandon</li>
+          <li>Bennet</li>
+          <li><input type="text" class="w3-input" name="txt" placeholder="Employee #1"></li>
+        </ul>
+      </div>
+      <div class="list w3-col s5" id="list4">
+        <div class="list-header">
+          <input type="text" class="w3-input" name="txt" placeholder="Job #4">
+        </div>
+        <ul class="sortable-list" id="sortable4">
+          <li class="w3-text-teal">Kevin</li>
+          <li>Jason</li>
+          <li><input type="text" class="w3-input" name="txt" placeholder="Employee #2"></li>
+        </ul>
+      </div>
+    </div>
+    <button id="submitBtn">Submit</button>
+    <iframe class="responsive-iframe"
+      src="https://app.appsmith.com/app/untitled-application-1/page1-648f3014a4c14140d4c621c3?embed=true">
+    </iframe>
+    <iframe class="responsive-iframe"
+      src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23222222&ctz=America%2FChicago&src=YW1lby5lZWNpQGdtYWlsLmNvbQ&color=%23039BE5">
+    </iframe>
+    <div style="filter: invert(1);">
+      <div class="w3-container"
+        style="margin-bottom: 160px; filter: hue-rotate(18.73deg) saturate(1.61%) brightness(82.86%)">
+        <iframe class="responsive-iframe"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSeNE1eOYrUfvlepdesV0SoBIvQcod96YSWJ3cnfar2kxwmPug/viewform?embedded=true">
+        </iframe>
+      </div>
+    </div>
+    <div id="mySidenav" class="sidenav">
+      <!-- <a href="javascript:void(0)" class="sidebar-button" onclick="toggleNav()">&#9776;</a> -->
+      <a href="{{ url_for('form') }}"><br><i class="w3-xlarge fas fa-home w3-text-light-blue"></i>Home</a>
+      <a href="{{ url_for('count') }}"><i class="fas fa-calculator w3-text-light-blue"></i>Count Helper</a>
+      <a href="{{ url_for('todo') }}"><i class="fas fa-check-square w3-text-light-blue"></i>To-do List</a>
+      <a href="{{ url_for('calendar') }}"><i class="fas fa-calendar w3-text-light-blue"></i>Calendar</a>
+  
+    </div>
+  
+  
+  
+    <div id="main">
+      <span class="sidebar-button" style="font-size:30px;cursor:pointer" onclick="toggleNav()">&#9776;</span>
+    </div>
+  
+    <script>
+      function toggleNav() {
+        var sidenav = document.getElementById("mySidenav");
+        var main = document.getElementById("main");
+  
+        if (sidenav.style.width === "250px") {
+          sidenav.style.width = "0";
+          main.style.marginRight = "0";
+        } else {
+          sidenav.style.width = "250px";
+          main.style.marginRight = "250px";
+        }
+      }
+    </script>
+  </body>
+</html>

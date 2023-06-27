@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+  integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<body>
+  <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"
+    xmlns="http://www.w3.org/TR/REC-html40">
+
+  <head>
+
+
+    <meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+    <meta name=ProgId content=Excel.Sheet>
+    <meta name=Generator content="Microsoft Excel 15">
+    <link rel=File-List href="Book1_files/filelist.xml">
+    <style id="Book1_16988_Styles">
+      body {
+        background: #222222;
+      }
+
+      table {
+        width: 100%;
+        border: 1px solid #b3adad;
+        border-collapse: collapse;
+        padding: 5px;
+      }
+
+
+      table th {
+        border: 1px solid #b3adad;
+        padding: 5px;
+        background: #404040;
+        color: #a29a9a;
+      }
+
+
+      td .special-column {
+        border: 1px solid #790b0b;
+        text-align: left;
+        padding: 5px;
+        background: #cc3030;
+        color: #9cd256;
+      }
+
+      td {
+        border: 1px solid #b3adad;
+        text-align: left;
+        padding: 5px;
+        background: #3e3d3d;
+        color: #56bdd2;
+      }
+
+      td .special-column {
+        border: 1px solid #790b0b;
+        text-align: left;
+        padding: 5px;
+        background: #cc3030;
+        color: #9cd256;
+      }
+
+      /* <!--sidebar--> */
+      body {
+        font-family: "Lato", sans-serif;
+      }
+
+      .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+        display: block;
+      }
+
+      .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .sidenav a:hover {
+        color: #f1f1f1;
+      }
+
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
+
+      #main {
+        transition: margin-left .5s;
+        /* Change margin-left to margin-right */
+      }
+
+      .sidebar-button {
+        position: fixed;
+        bottom: 60px;
+        right: 5px;
+        font-size: 0px;
+        color: #111;
+        background-color: #817c7c;
+        padding: 11px 20px;
+        border-radius: 0px;
+        cursor: pointer;
+      }
+
+      .btn {
+        position: fixed;
+        bottom: 150px;
+        right: 5px;
+        font-size: 0px;
+        color: #111;
+        background-color: #817c7c;
+        padding: 15px 15px;
+        border-radius: 0px;
+        cursor: pointer;
+      }
+
+      @media screen and (max-height: 450px) {
+        .sidenav {
+          padding-top: 15px;
+        }
+
+        .sidenav a {
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="mySidenav" class="sidenav">
+      <!-- <a href="javascript:void(0)" class="sidebar-button" onclick="toggleNav()">&#9776;</a> -->
+      <a href="{{ url_for('form') }}"><br><i class="w3-xlarge fas fa-home w3-text-light-blue"></i>Home</a>
+      <a href="{{ url_for('count') }}"><i class="fas fa-calculator w3-text-light-blue"></i>Count Helper</a>
+      <a href="{{ url_for('todo') }}"><i class="fas fa-check-square w3-text-light-blue"></i>To-do List</a>
+      <a href="{{ url_for('calendar') }}"><i class="fas fa-calendar w3-text-light-blue"></i>Calendar</a>
+
+    </div>
+
+
+
+    <div id="main">
+      <span class="sidebar-button" style="font-size:30px;cursor:pointer" onclick="toggleNav()">&#9776;</span>
+      <a href="/download" button type="button"
+        class="btn w3-hover-border-pale-red  w3-dark-grey w3-right btn-success btn-lg"> <i
+          class="glyphicon glyphicon-floppy-disk" style="font-size:34px"></i></a>
+    </div>
+
+    <script>
+      function toggleNav() {
+        var sidenav = document.getElementById("mySidenav");
+        var main = document.getElementById("main");
+
+        if (sidenav.style.width === "250px") {
+          sidenav.style.width = "0";
+          main.style.marginRight = "0";
+        } else {
+          sidenav.style.width = "250px";
+          main.style.marginRight = "250px";
+        }
+      }
+    </script>
+
+
+
+    <table class="w3-responsive">
+
+      <tr>
+        <th>Material</th>
+        <th>Quantity</th>
+      </tr>
+
+
+      {% for material, quantity in materials.items() %}
+      <tr>
+        <td class="special-column">{{ material }}</td>
+        <td class="w3-center  w3-text-orange">{{ quantity }}</td>
+      </tr>
+      {% endfor %}
+
+    </table>
+  </body>
+
+  </html>
+
+  <!-- <table class="w3-responsive">
+      <tr>
+          <th>Quantity</th>
+          <th>Material</th  >
+      </tr>
+      {% for row in rows %}
+      <tr>
+          {% if row[1] is not none %}
+              <td class="special-column">{{ row[2] }}</td>
+              <td class="w3-center  w3-text-orange">{{ row[1] }}</td>
+    
+          {% endif %}
+      </tr>
+      {% endfor %}
+  </table> -->
